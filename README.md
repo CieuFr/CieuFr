@@ -1,5 +1,5 @@
 ### Hi there 👋
 
-My name is Victor I am a Computer Graphics student. 
+My name is Victor I am a recent Computer Graphics graduate and I am looking for a first job. 
 
 
