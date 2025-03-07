@@ -23,7 +23,7 @@ import "./index.css";
 // Define the root route with the layout
 const rootRoute = createRootRoute({
   component: () => (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="">
       <Header />
       <main className="container mx-auto px-4 py-8 pt-24">
         <Outlet />
