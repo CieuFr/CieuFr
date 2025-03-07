@@ -1,17 +1,16 @@
-"use client"
+"use client";
 
-import { useRef, useEffect } from "react"
-import { useParams, Link } from "@tanstack/react-router"
-import { Canvas, useFrame, useThree } from "@react-three/fiber"
-import { OrbitControls } from "@react-three/drei"
-import * as THREE from "three"
+import { useParams, Link } from "@tanstack/react-router";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 
 // Dummy shaders data
 const shadersData = [
   {
     id: 1,
     title: "Fluid Simulation",
-    description: "Une simulation de fluide basée sur les équations de Navier-Stokes.",
+    description:
+      "Une simulation de fluide basée sur les équations de Navier-Stokes.",
     vertexShader: `
       varying vec2 vUv;
       void main() {
@@ -134,7 +133,8 @@ const shadersData = [
   {
     id: 3,
     title: "Fractal Noise",
-    description: "Génération de textures fractales avec différentes couches de bruit.",
+    description:
+      "Génération de textures fractales avec différentes couches de bruit.",
     vertexShader: `
       varying vec2 vUv;
       void main() {
@@ -258,49 +258,29 @@ const shadersData = [
       }
     `,
   },
-]
-
-function ShaderPlane({ vertexShader, fragmentShader }) {
-  const meshRef = useRef()
-  const { size } = useThree()
-
-  const uniforms = useRef({
-    uTime: { value: 0 },
-    uResolution: { value: new THREE.Vector2() },
-  })
-
-  useEffect(() => {
-    uniforms.current.uResolution.value.set(size.width, size.height)
-  }, [size])
-
-  useFrame((state) => {
-    if (meshRef.current) {
-      uniforms.current.uTime.value = state.clock.getElapsedTime()
-    }
-  })
-
-  return (
-    <mesh ref={meshRef} position={[0, 0, 0]}>
-      <planeGeometry args={[2, 2, 1, 1]} />
-      <shaderMaterial vertexShader={vertexShader} fragmentShader={fragmentShader} uniforms={uniforms.current} />
-    </mesh>
-  )
-}
+];
 
 export default function ShaderDetail() {
-  const { shaderId } = useParams({ from: "/shaders/$shaderId" })
-  const shader = shadersData.find((s) => s.id === Number.parseInt(shaderId))
+  const { shaderId } = useParams({ from: "/shaders/$shaderId" });
+  const shader = shadersData.find((s) => s.id === Number.parseInt(shaderId));
 
   if (!shader) {
     return (
       <div className="max-w-4xl mx-auto py-12 text-center">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Shader non trouvé</h1>
-        <p className="text-gray-600 dark:text-gray-300 mb-6">Le shader que vous recherchez n'existe pas.</p>
-        <Link to="/shaders" className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          Shader non trouvé
+        </h1>
+        <p className="text-gray-600 dark:text-gray-300 mb-6">
+          Le shader que vous recherchez n'existe pas.
+        </p>
+        <Link
+          to="/shaders"
+          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+        >
           Retour aux shaders
         </Link>
       </div>
-    )
+    );
   }
 
   return (
@@ -318,7 +298,12 @@ export default function ShaderDetail() {
             viewBox="0 0 24 24"
             stroke="currentColor"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
           </svg>
           Retour
         </Link>
@@ -334,11 +319,9 @@ export default function ShaderDetail() {
       {/* Full screen Three.js scene */}
       <div className="w-full h-screen">
         <Canvas>
-          <ShaderPlane vertexShader={shader.vertexShader} fragmentShader={shader.fragmentShader} />
           <OrbitControls enablePan={false} />
         </Canvas>
       </div>
     </div>
-  )
+  );
 }
-
