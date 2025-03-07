@@ -17,14 +17,15 @@ import ProjectDetail from "./components/project-detail";
 import Shaders from "./components/shaders";
 import ShaderDetail from "./components/shader-detail";
 import Resume from "./components/resume";
+import ShaderScene from "./components/shader-home";
 import "./index.css";
 
 // Define the root route with the layout
 const rootRoute = createRootRoute({
   component: () => (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="">
       <Header />
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8 pt-20">
         <Outlet />
       </main>
     </div>
@@ -35,16 +36,7 @@ const rootRoute = createRootRoute({
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/",
-  component: () => (
-    <div className="flex flex-col items-center justify-center py-12">
-      <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
-        Bienvenue sur mon site
-      </h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl text-center">
-        Utilisez la navigation en haut pour explorer les différentes sections.
-      </p>
-    </div>
-  ),
+  component: ShaderScene,
 });
 
 // Define the route for Articles

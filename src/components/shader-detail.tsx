@@ -1,8 +1,10 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import { useParams, Link } from "@tanstack/react-router";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import * as THREE from "three";
 
 // Dummy shaders data
 const shadersData = [
@@ -260,9 +262,111 @@ const shadersData = [
   },
 ];
 
+// Define interface for ShaderPlane props
+interface ShaderPlaneProps {
+  vertexShader: string;
+  fragmentShader: string;
+}
+
+function ShaderPlane({ vertexShader, fragmentShader }: ShaderPlaneProps) {
+  const meshRef = useRef<THREE.Mesh>(null);
+  const { size } = useThree();
+
+  const uniforms = useRef({
+    uTime: { value: 0 },
+    uResolution: { value: new THREE.Vector2() },
+  });
+
+  useEffect(() => {
+    uniforms.current.uResolution.value.set(size.width, size.height);
+  }, [size]);
+
+  useFrame((state) => {
+    if (meshRef.current) {
+      uniforms.current.uTime.value = state.clock.getElapsedTime();
+    }
+  });
+
+  return (
+    <mesh ref={meshRef} position={[0, 0, 0]}>
+      <planeGeometry args={[2, 2, 1, 1]} />
+      <shaderMaterial
+        vertexShader={vertexShader}
+        fragmentShader={fragmentShader}
+        uniforms={uniforms.current}
+      />
+    </mesh>
+  );
+}
+
+// Custom hook to apply global styles
+function useGlobalStyles() {
+  useEffect(() => {
+    // Create a style element
+    const styleElement = document.createElement("style");
+
+    // Add the CSS content
+    styleElement.textContent = `
+      /* Remove all margins, paddings, and scrollbars */
+      body, html {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+      }
+      
+      /* Make header transparent and floating */
+      header {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        backdrop-filter: blur(8px);
+        border-bottom: none !important;
+        box-shadow: none !important;
+      }
+      
+      /* Dark mode header */
+      .dark header {
+        background-color: rgba(31, 41, 55, 0.1) !important;
+      }
+      
+      /* Remove container constraints */
+      main {
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: none !important;
+        width: 100% !important;
+        height: 100vh !important;
+      }
+      
+      /* Remove container constraints */
+      .container {
+        max-width: none !important;
+        width: 100% !important;
+        padding: 0 16px !important;
+      }
+    `;
+
+    // Append the style element to the document head
+    document.head.appendChild(styleElement);
+
+    // Clean up function to remove the style element when component unmounts
+    return () => {
+      document.head.removeChild(styleElement);
+    };
+  }, []);
+}
+
 export default function ShaderDetail() {
   const { shaderId } = useParams({ from: "/shaders/$shaderId" });
   const shader = shadersData.find((s) => s.id === Number.parseInt(shaderId));
+
+  // Apply global styles
+  useGlobalStyles();
 
   if (!shader) {
     return (
@@ -284,12 +388,20 @@ export default function ShaderDetail() {
   }
 
   return (
-    <div className="relative">
-      {/* Back button */}
-      <div className="absolute top-4 left-4 z-10">
+    <div className="fixed inset-0 w-full h-full">
+      <Canvas className="w-full h-full">
+        <ShaderPlane
+          vertexShader={shader.vertexShader}
+          fragmentShader={shader.fragmentShader}
+        />
+        <OrbitControls enablePan={false} />
+      </Canvas>
+
+      {/* Floating UI elements */}
+      <div className="absolute bottom-6 left-6 right-6 flex justify-between items-center z-10">
         <Link
           to="/shaders"
-          className="px-4 py-2 bg-gray-800 bg-opacity-70 text-white rounded-md hover:bg-opacity-90 transition-colors flex items-center"
+          className="px-4 py-2 bg-black bg-opacity-30 text-white rounded-md hover:bg-opacity-50 transition-colors backdrop-blur-sm flex items-center"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -305,22 +417,12 @@ export default function ShaderDetail() {
               d="M15 19l-7-7 7-7"
             />
           </svg>
-          Retour
+          Retour aux shaders
         </Link>
-      </div>
 
-      {/* Shader title */}
-      <div className="absolute top-4 right-4 z-10">
-        <div className="bg-gray-800 bg-opacity-70 text-white px-4 py-2 rounded-md">
+        <div className="px-4 py-2 bg-black bg-opacity-30 text-white rounded-md backdrop-blur-sm">
           <h2 className="text-lg font-semibold">{shader.title}</h2>
         </div>
-      </div>
-
-      {/* Full screen Three.js scene */}
-      <div className="w-full h-screen">
-        <Canvas>
-          <OrbitControls enablePan={false} />
-        </Canvas>
       </div>
     </div>
   );

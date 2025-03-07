@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router"
+import { Link } from "@tanstack/react-router";
 
 // Dummy project data
 const projectsData = [
@@ -23,17 +23,21 @@ const projectsData = [
     image: "/placeholder.svg",
     tags: ["D3.js", "SVG", "React"],
   },
-]
+];
 
 export default function Projects() {
   return (
     <div className="max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Projets</h1>
+      <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+        Projets
+      </h1>
       <div className="grid gap-8 md:grid-cols-2">
         {projectsData.map((project) => (
-          <div
+          <Link
             key={project.id}
-            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition-shadow"
+            to="/projects/$projectId"
+            params={{ projectId: project.id.toString() }}
+            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition-shadow block"
           >
             <img
               src={project.image || "/placeholder.svg"}
@@ -42,20 +46,23 @@ export default function Projects() {
               width={400}
               height={200}
             />
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{project.title}</h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+              {project.title}
+            </h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              {project.description}
+            </p>
             <div className="flex flex-wrap gap-2 mb-4">
               {project.tags.map((tag) => (
-                <span key={tag} className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-md text-xs">
+                <span
+                  key={tag}
+                  className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-md text-xs"
+                >
                   {tag}
                 </span>
               ))}
             </div>
-            <Link
-              to="/projects/$projectId"
-              params={{ projectId: project.id.toString() }}
-              className="text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center"
-            >
+            <div className="text-blue-600 dark:text-blue-400 inline-flex items-center">
               Voir le projet
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -64,13 +71,17 @@ export default function Projects() {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
-            </Link>
-          </div>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
-  )
+  );
 }
-

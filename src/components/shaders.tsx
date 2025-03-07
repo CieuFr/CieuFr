@@ -38,9 +38,11 @@ export default function Shaders() {
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {shadersData.map((shader) => (
-          <div
+          <Link
             key={shader.id}
-            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition-shadow"
+            to="/shaders/$shaderId"
+            params={{ shaderId: shader.id.toString() }}
+            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition-shadow block"
           >
             <div className="aspect-square bg-gradient-to-br from-purple-500 to-blue-600 rounded-md mb-4 overflow-hidden">
               <img
@@ -57,11 +59,7 @@ export default function Shaders() {
             <p className="text-gray-600 dark:text-gray-300 mb-4">
               {shader.description}
             </p>
-            <Link
-              to="/shaders/$shaderId"
-              params={{ shaderId: shader.id.toString() }}
-              className="text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center"
-            >
+            <div className="text-blue-600 dark:text-blue-400 inline-flex items-center">
               Voir le shader
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -77,8 +75,8 @@ export default function Shaders() {
                   d="M9 5l7 7-7 7"
                 />
               </svg>
-            </Link>
-          </div>
+            </div>
+          </Link>
         ))}
       </div>
     </div>

@@ -39,9 +39,11 @@ export default function Articles() {
       </h1>
       <div className="grid gap-6">
         {articlesData.map((article) => (
-          <article
+          <Link
             key={article.id}
-            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition-shadow"
+            to="/articles/$articleId"
+            params={{ articleId: article.id.toString() }}
+            className="block bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition-shadow"
           >
             <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-2">
               <span>{article.date}</span>
@@ -57,11 +59,7 @@ export default function Articles() {
             <p className="text-gray-600 dark:text-gray-300 mb-4">
               {article.description}
             </p>
-            <Link
-              to="/articles/$articleId"
-              params={{ articleId: article.id.toString() }}
-              className="text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center"
-            >
+            <div className="text-blue-600 dark:text-blue-400 inline-flex items-center">
               Lire l'article
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -77,8 +75,8 @@ export default function Articles() {
                   d="M9 5l7 7-7 7"
                 />
               </svg>
-            </Link>
-          </article>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
