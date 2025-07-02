@@ -13,14 +13,14 @@
  * @property {boolean} currentJob - Indicates whether the position is the current job.
  */
 interface WorkExperience {
-    title: string;
-    startDate: string;
-    endDate?: string;
-    company: string;
-    location: string;
-    description: string;
-    goals: string[];
-    currentJob: boolean;
+  title: string;
+  startDate: string;
+  endDate?: string;
+  company: string;
+  location: string;
+  description: string;
+  goals: string[];
+  currentJob: boolean;
 }
 
 /**
@@ -42,33 +42,48 @@ interface WorkExperience {
  * @property {Array<string>} goals - A list of goals or achievements within the job.
  * @property {boolean} currentJob - A flag indicating if the job is the current one.
  */
-const workExperience:WorkExperience[] = [
-    {
-        title: "Frontend Developer",
-        startDate: "2020-03-10",
-        company: "Google Inc",
-        location: "United States",
-        description: "Developed and maintained web applications using React, NextJs, and Tailwind CSS.",
-        goals: [
-            "Developed and maintained web applications using React, NodeJs, and MongoDB.",
-            "Worked with the team to develop and maintain web applications using React, NodeJs, and MongoDB.",
-            "Created and maintained web applications using React, NodeJs, and MongoDB.",
-        ],
-        currentJob: true,
-    },
-    {
-        title: "Software Engineer",
-        startDate: "2018-03-10",
-        endDate: "2020-03-10",
-        company: "Company Name",
-        location: "United States",
-        description: "Developed and maintained web applications using React, NodeJs, and MongoDB.",
-        goals: [
-            "Developed and maintained web applications using React, NodeJs, and MongoDB.",
-            "Worked with the team to develop and maintain web applications using React, NodeJs, and MongoDB.",
-            "Created and maintained web applications using React, NodeJs, and MongoDB.",
-        ],
-        currentJob: false,
-    },
+const workExperience: WorkExperience[] = [
+  {
+    title: "3D Developer",
+    startDate: "2024-11-25",
+    company: "Akkodis",
+    location: "Bordeaux, France",
+    description:
+      "Developed a 2D web viewer and a C++ server for vizualising high-resolution images",
+    goals: [
+      "Developed a 2D web viewer and a C++ server for vizualising high-resolution images",
+      "Technologies : OpenSeadragon, Drogon, WebGL, IIIF Protocol",
+      "Languages: Typescript, C++, GLSL"
+    ],
+    currentJob: true
+  },
+  {
+    title: "Unreal 3D developer internship",
+    startDate: "2024-01-10",
+    endDate: "2024-08-10",
+    company: "Corys",
+    location: "Grenoble, Bodeaux",
+    description: "Developed and maintained an application in Unreal 5",
+    goals: [
+      "3D development for procedural building generation using Unreal Engine 5",
+      "Technologies : Unreal Engine 5, Geometry Script, Perforce",
+      "Languages: C++"
+    ],
+    currentJob: false
+  },
+  {
+    title: "Godot 3D developer summer internship",
+    startDate: "2023-06-10",
+    endDate: "2023-08-10",
+    company: "Computer Graphics Lab",
+    location: "Sherbrooke, Canada",
+    description: "Developed and maintained an application in Godot",
+    goals: [
+      "3D development to implement a real-time by examplar texture synthesis algorithm in Godot",
+      "Technologies : Godot",
+      "Languages: C++, GLSL"
+    ],
+    currentJob: false
+  }
 ];
 export default workExperience;
