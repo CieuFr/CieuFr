@@ -20,11 +20,7 @@ export const ME = {
     email: "vicdeo[dot]leiglat[at]gmail.com",
     linkedin: "https://www.linkedin.com/in/victor-leiglat-34752a220/",
     resumeDoc: "leiglat_victor_resume.pdf"
-  },
-  aboutMe:
-    "I am a software engineer with a focus on 3D development. \n I have experience working on game engines " +
-    "at a low of higher level. I enjoy making games come alive and learning new things. I am looking " +
-    "for new opportunities, feel free to reach out to me !"
+  }
 };
 
 export const SOCIALS = [

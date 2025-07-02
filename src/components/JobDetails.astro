@@ -1,7 +1,7 @@
 ---
 // component imports
 import {Badge} from "./ui/badge";
-
+import {Icon} from "astro-icon/components";
 // library imports
 import {formatDatetime} from "../lib/utils";
 
@@ -12,6 +12,7 @@ interface Job {
     startDate: string;
     endDate: string;
     goals: string[];
+    icons: string[];
     currentJob: boolean;
 }
 
@@ -23,6 +24,7 @@ const {
     startDate,
     endDate,
     goals,
+    icons,
     currentJob,
 } = jobData as Job;
 
@@ -43,4 +45,11 @@ const {
                 <li>{goal}</li>
         ))}
     </ul>
+    <div class="flex items-center gap-2">
+        {icons.map((icon: string) => (
+            <Icon title={icon} width={40} height={40} name={icon} class="text-primary-light dark:text-primary-dark" />
+        ))}
+      
+    </div>
+    
 </div>

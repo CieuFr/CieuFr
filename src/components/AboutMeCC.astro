@@ -18,22 +18,28 @@ import {ME} from '@/config';
 
 <div class="relative flex flex-col gap-8 text-n700 dark:text-n200 w-full mt-10 px-4">
     {/*Description or About me -- Section*/}
-    <div class="mb-4">
+    <div class="mb-2 about-me-box">
         <p>
-            {ME.aboutMe}
-        </p>
+            I am a <b>software engineer</b> with a focus on <b>3D development</b>. 
+            I have experience working on <b>game engines</b>
+            at low and high level.</p>
+            <p>I enjoy making games come alive and learning new things ! </p>
+        <p>I am looking 
+            for new opportunities, feel free to reach out to me !
+        </p>  
+        
     </div>
     {/*Work experience section*/}
-    <div class="mb-4">
-        <h2 class="text-3xl font-bold mb-4">Work Experience</h2>
-        <div class="flex flex-col gap-6">
+    <div class="mt-2 mb-4">
+        <h2 class="text-3xl font-bold mb-16">Work Experience</h2>
+        <div class="flex flex-col gap-16">
             {workExperience.map((job) => (
                     <JobDetails jobData={job}/>
             ))}
         </div>
     </div>
     {/*Education section*/}
-    <div class="mb-4">
+    <div class="mb-4 mt-8">
         <h2 class="text-3xl font-bold mb-4">Education</h2>
         <div class="flex flex-col gap-6">
             {education.map((edu) => (

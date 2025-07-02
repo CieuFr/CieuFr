@@ -6,24 +6,26 @@ interface HardSkill {
 
 const hardSkills: HardSkill[] = [
   {
-    name: "AstroJs",
-    description: "My favorite static site generator for building modern websites",
-    icon: "astro_dark"
+    name: "C++",
+    description: "I started using C++ 7 years ago and haven't stopped since",
+    icon: "cpp"
   },
   {
-    name: "NextJs",
-    description: "My favorite React framework for building modern web apps",
-    icon: "nextjs_icon_dark"
+    name: "OpenGL",
+    description: "I made 2 project renderers using OpenGL",
+    icon: "glsl"
   },
   {
-    name: "NodeJs",
-    description: "I've been using NodeJs for backend development since 2018",
-    icon: "nodejs"
+    name: "Unreal",
+    description:
+      "I used Unreal for my end of studies internship so I gained a lot of experience on it",
+    icon: "unreal"
   },
   {
-    name: "MongoDB",
-    description: "My favorite database for modern apps",
-    icon: "mongodb"
+    name: "Godot",
+    description:
+      "I have used Godot in my summer internship but also for several game jams",
+    icon: "godot"
   }
 ];
 

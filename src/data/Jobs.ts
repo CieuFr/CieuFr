@@ -19,6 +19,7 @@ interface WorkExperience {
   company: string;
   location: string;
   description: string;
+  icons: string[];
   goals: string[];
   currentJob: boolean;
 }
@@ -51,10 +52,11 @@ const workExperience: WorkExperience[] = [
     description:
       "Developed a 2D web viewer and a C++ server for vizualising high-resolution images",
     goals: [
-      "Developed a 2D web viewer and a C++ server for vizualising high-resolution images",
-      "Technologies : OpenSeadragon, Drogon, WebGL, IIIF Protocol",
-      "Languages: Typescript, C++, GLSL"
+      "Development of a web viewer in TypeScript and WebGL to visualize very high resolution images, and a server in C++ using the IIIF protocol to retrieve these images."
     ],
+    icons: ["cpp", "glsl", "typescript"],
+    // techno: "OpenSeadragon, Drogon, WebGL, IIIF Protocol",
+    // languages: "Typescript, C++, GLSL",
     currentJob: true
   },
   {
@@ -65,10 +67,11 @@ const workExperience: WorkExperience[] = [
     location: "Grenoble, Bodeaux",
     description: "Developed and maintained an application in Unreal 5",
     goals: [
-      "3D development for procedural building generation using Unreal Engine 5",
-      "Technologies : Unreal Engine 5, Geometry Script, Perforce",
-      "Languages: C++"
+      "3D development for procedural building generation using Unreal Engine 5 andGeometry Script"
     ],
+    icons: ["cpp", "unreal"],
+    // techno: "Unreal Engine 5, Geometry Script, Perforce",
+    // languages: "C++",
     currentJob: false
   },
   {
@@ -79,10 +82,11 @@ const workExperience: WorkExperience[] = [
     location: "Sherbrooke, Canada",
     description: "Developed and maintained an application in Godot",
     goals: [
-      "3D development to implement a real-time by examplar texture synthesis algorithm in Godot",
-      "Technologies : Godot",
-      "Languages: C++, GLSL"
+      "Development of tools in Godot Engine using C++ and GLSL for by examplar texture synthesis in real-time."
     ],
+    icons: ["cpp", "godot", "glsl"],
+    // techno: "Godot",
+    // languages: "C++, GLSL",
     currentJob: false
   }
 ];
