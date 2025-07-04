@@ -14,7 +14,7 @@ const education: Education[] = [
     startDate: "2022-09-01",
     endDate: "2024-06-30",
     school: "University of Montpellier",
-    location: "France",
+    location: "Montpellier, France",
     description: "",
     currentUni: false
   },
